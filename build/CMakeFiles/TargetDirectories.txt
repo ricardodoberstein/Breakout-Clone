@@ -1,0 +1,3 @@
+/home/doberstein/Documents/Projects/ArcadeApp/build/CMakeFiles/rebuild_cache.dir
+/home/doberstein/Documents/Projects/ArcadeApp/build/CMakeFiles/edit_cache.dir
+/home/doberstein/Documents/Projects/ArcadeApp/build/CMakeFiles/Arcade.dir
