@@ -47,6 +47,14 @@ add_executable(
   src/utils/Utils.h
   src/utils/Vec2D.cpp
   src/utils/Vec2D.h
+  src/games/breakout/Ball.h
+  src/games/breakout/Ball.cpp
+  src/games/breakout/LevelBoundary.h
+  src/games/breakout/LevelBoundary.cpp
+  src/games/breakout/Block.h
+  src/games/breakout/Block.cpp
+  src/games/breakout/BreakoutGameLevel.h
+  src/games/breakout/BreakoutGameLevel.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} SDL2)

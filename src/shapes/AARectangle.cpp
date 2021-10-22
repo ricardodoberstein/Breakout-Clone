@@ -40,12 +40,12 @@ Vec2D AARectangle::GetCenterPoint() const
   return Vec2D(GetTopLeftPoint().GetX() + GetWidth() / 2.0f, GetTopLeftPoint().GetY() + GetHeight() / 2.0f);
 }
 
-bool AARectangle::Intersects(const AARectangle &otherRectangle) const
+bool AARectangle::Intersects(const AARectangle &otherRect) const
 {
-  return !(otherRectangle.GetBottomRightPoint().GetY() < GetTopLeftPoint().GetX() ||
-           otherRectangle.GetTopLeftPoint().GetX() > GetBottomRightPoint().GetX() ||
-           otherRectangle.GetBottomRightPoint().GetY() < GetTopLeftPoint().GetY() ||
-           otherRectangle.GetTopLeftPoint().GetY() > GetBottomRightPoint().GetY());
+  return !(otherRect.GetBottomRightPoint().GetX() < GetTopLeftPoint().GetX() ||
+           otherRect.GetTopLeftPoint().GetX() > GetBottomRightPoint().GetX() ||
+           otherRect.GetBottomRightPoint().GetY() < GetTopLeftPoint().GetY() ||
+           otherRect.GetTopLeftPoint().GetY() > GetBottomRightPoint().GetY());
 }
 
 bool AARectangle::ContaiinsPoint(const Vec2D &point) const

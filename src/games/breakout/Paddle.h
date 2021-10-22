@@ -7,6 +7,7 @@
 #include "../../graphics/Screen.h"
 #include "../../utils/Utils.h"
 #include "BoundaryEdge.h"
+#include "Ball.h"
 
 enum PaddleDirection
 {
@@ -20,8 +21,10 @@ public:
   static const uint32_t PADDLE_WIDTH = 50;
   static const uint32_t PADDLE_HEIGHT = 10;
   void Init(const AARectangle &rect, const AARectangle &boundary);
-  void Update(uint32_t dt);
+  void Update(uint32_t dt, Ball &ball);
   void Draw(Screen &screen);
+
+  bool Bounce(Ball &ball);
 
   inline void SetMovemenetDirection(PaddleDirection dir) { mDirection |= dir; }
   inline void UnsetMovementDirection(PaddleDirection dir) { mDirection &= ~dir; }
@@ -33,6 +36,7 @@ private:
   uint32_t mDirection;
   AARectangle mBoundary;
   const float VELOCITY = 100.0f;
+  const float CORNER_BOUNCE_AMT = 0.2f;
 };
 
 #endif

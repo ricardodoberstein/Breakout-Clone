@@ -39,15 +39,34 @@ void BreakOut::Init(GameController &controller)
 
 void BreakOut::Update(uint32_t dt)
 {
-  mPaddle.Update(dt);
+  mBall.Update(dt);
+  mPaddle.Update(dt, mBall);
+
+  BoundaryEdge edge;
+
+  if (mPaddle.Bounce(mBall))
+  {
+    return;
+  }
+
+  if (mLevelBoundary.HasCollided(mBall, edge))
+  {
+    mBall.Bounce(edge);
+    return;
+  }
+
+  mLevel.Update(dt, mBall);
 }
 
 void BreakOut::Draw(Screen &screen)
 {
+  mBall.Draw(screen);
   mPaddle.Draw(screen);
+  mLevel.Draw(screen);
+  screen.Draw(mLevelBoundary.GetAARectangle(), Color::White());
 }
 
-std::string BreakOut::GetName()
+const std::string& BreakOut::GetName()
 {
   static std::string name = "BreakOut";
   return name;
@@ -57,5 +76,12 @@ void BreakOut::ResetGame()
 {
   AARectangle paddleRect = {Vec2D(App::Singleton().Width()/2 - Paddle::PADDLE_WIDTH/2, App::Singleton().Height() - 3*30), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT};
   AARectangle levelBoundary = { Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height() };
+  
+  mLevelBoundary = {levelBoundary};
+
   mPaddle.Init(paddleRect, levelBoundary);
+  mBall.MoveTo(Vec2D(App::Singleton().Width()/2, App::Singleton().Height()/2));
+  mBall.SetVelocity(INITIAL_BALL_VELOCITY);
+
+  mLevel.Init(levelBoundary);
 }

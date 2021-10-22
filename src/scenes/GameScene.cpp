@@ -25,6 +25,5 @@ void GameScene::Draw(Screen &screen)
 
 const std::string &GameScene::GetSceneName() const
 {
-  static std::string name = "";
-  return name;
+  return mGame->GetName();
 }
