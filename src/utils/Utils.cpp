@@ -37,3 +37,8 @@ bool StringCompare(const std::string& a, const std::string& b)
 
   return false;
 }
+
+float Clam(float val, float min, float max) 
+{
+  
+}

@@ -301,30 +301,41 @@ void Screen::FillPoly(const std::vector<Vec2D> &points, const Color &color)
   }
 }
 
-void Screen::Draw(const BMPImage &image, const Sprite &sprite, const Vec2D &pos)
+void Screen::Draw(const BMPImage &image, const Sprite &sprite, const Vec2D &pos, const Color &overlayColor)
 {
+  float rVal = static_cast<float>(overlayColor.GetRed()) / 255.0f;
+  float gVal = static_cast<float>(overlayColor.GetGreen()) / 255.0f;
+  float bVal = static_cast<float>(overlayColor.GetBlue()) / 255.0f;
+  float aVal = static_cast<float>(overlayColor.GetAlpha()) / 255.0f;
+
   uint32_t width = sprite.width;
   uint32_t height = sprite.height;
 
-  for(uint32_t r = 0; r < height; ++r)
+  for (uint32_t r = 0; r < height; ++r)
   {
     for (uint32_t c = 0; c < width; ++c)
     {
-      Draw(c + pos.GetX(), r + pos.GetY(), image.GetPixels()[GetIndex(image.GetWidth(), r + sprite.yPos, c + sprite.xPos)]);
+      Color imageColor = image.GetPixels()[GetIndex(image.GetWidth(), r + sprite.yPos, c + sprite.xPos)];
+      Color newColor = {
+          static_cast<uint8_t>(imageColor.GetRed() * rVal),
+          static_cast<uint8_t>(imageColor.GetGreen() * gVal),
+          static_cast<uint8_t>(imageColor.GetBlue() * bVal),
+          static_cast<uint8_t>(imageColor.GetAlpha() * aVal)};
+      Draw(c + pos.GetX(), r + pos.GetY(), newColor);
     }
   }
 }
 
-void Screen::Draw(const SpriteSheet &ss, const std::string &spriteName, const Vec2D &pos)
+void Screen::Draw(const SpriteSheet &ss, const std::string &spriteName, const Vec2D &pos, const Color &overlayColor)
 {
-  Draw(ss.GetBMPImage(), ss.GetSprite(spriteName), pos);
+  Draw(ss.GetBMPImage(), ss.GetSprite(spriteName), pos, overlayColor);
 }
 
-void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& pos)
+void Screen::Draw(const BitmapFont &font, const std::string &textLine, const Vec2D &pos, const Color &overlayColor)
 {
   uint32_t xPos = pos.GetX();
 
-  const SpriteSheet& ss = font.GetSpriteSheet();
+  const SpriteSheet &ss = font.GetSpriteSheet();
 
   for (char c : textLine)
   {
@@ -336,7 +347,7 @@ void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec
 
     Sprite sprite = ss.GetSprite(std::string("") + c);
 
-    Draw(ss.GetBMPImage(), sprite, Vec2D(xPos, pos.GetY()));
+    Draw(ss.GetBMPImage(), sprite, Vec2D(xPos, pos.GetY()), overlayColor);
 
     xPos += sprite.width;
     xPos += font.GetFontSpaceingBetweenLetters();

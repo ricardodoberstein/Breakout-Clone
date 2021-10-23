@@ -48,7 +48,7 @@ void ArcadeScene::Draw(Screen &screen)
 
   textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
 
-  screen.Draw(font, GetSceneName(), textDrawPosition);
+  screen.Draw(font, GetSceneName(), textDrawPosition, Color::Red());
 }
 
 const std::string &ArcadeScene::GetSceneName() const
