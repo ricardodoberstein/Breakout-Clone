@@ -11,10 +11,16 @@ App &App::Singleton()
 
 bool App::Init(uint32_t width, uint32_t height, uint32_t mag)
 {
+  if (!mFont.Load("ArcadeFont"))
+  {
+    std::cout << "Could not load ArcadeFont" << std::endl;
+    return false;
+  }
+
   mnoptrWindow = mScreen.Init(width, height, mag);
 
   std::unique_ptr<ArcadeScene> arcadeScene = std::make_unique<ArcadeScene>();
-  
+
   PushScene(std::move(arcadeScene));
 
   //temp
@@ -38,9 +44,8 @@ void App::Run()
   uint32_t dt = 10;
   uint32_t accumulator = 0;
 
-  mInputController.Init([&running](uint32_t dt, InputState state) {
-    running = false;
-  });
+  mInputController.Init([&running](uint32_t dt, InputState state)
+                        { running = false; });
 
   while (running)
   {
@@ -112,7 +117,7 @@ Scene *App::TopScene()
   return mSceneStack.back().get();
 }
 
-const std::string& App::GetBasePath()
+const std::string &App::GetBasePath()
 {
   static std::string basePath = SDL_GetBasePath();
 

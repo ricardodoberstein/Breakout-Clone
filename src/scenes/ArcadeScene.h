@@ -11,7 +11,7 @@
 #include "../input/GameController.h"
 #include "../graphics/BMPImage.h"
 #include "../app/App.h"
-#include "../graphics/SpriteSheet.h"
+#include "../graphics/BitmapFont.h"
 
 enum eGame
 {
@@ -33,9 +33,6 @@ public:
 
 private:
   std::unique_ptr<Scene> GetScene(eGame game);
-
-  //temp
-  SpriteSheet mTempSS;
 };
 
 #endif

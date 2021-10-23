@@ -13,6 +13,7 @@
 #include "../scenes/Scene.h"
 #include "../input/InputController.h"
 #include "../scenes/GameScene.h"
+#include "../graphics/BitmapFont.h"
 
 class BreakOut;
 class BreakoutGameLevel;
@@ -31,9 +32,10 @@ public:
 
   void PushScene(std::unique_ptr<Scene> scene);
   void PopScene();
-  Scene* TopScene();
+  Scene *TopScene();
 
-  static const std::string& GetBasePath();
+  static const std::string &GetBasePath();
+  inline const BitmapFont &GetFont() const { return mFont; }
 
 private:
   Screen mScreen;
@@ -42,6 +44,8 @@ private:
   std::vector<std::unique_ptr<Scene>> mSceneStack;
 
   InputController mInputController;
+
+  BitmapFont mFont;
 };
 
 #endif
