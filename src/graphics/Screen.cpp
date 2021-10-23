@@ -1,4 +1,5 @@
 #include "Screen.h"
+#include "BMPImage.h"
 
 Screen::Screen() : mWidth(0), mHeight(0), noptrWindow(nullptr), noptrSurface(nullptr)
 {
@@ -296,6 +297,20 @@ void Screen::FillPoly(const std::vector<Vec2D> &points, const Color &color)
           }
         }
       }
+    }
+  }
+}
+
+void Screen::Draw(const BMPImage& image, const Vec2D& pos)
+{
+  uint32_t width = image.GetWidth();
+  uint32_t height = image.GetHeight();
+
+  for(uint32_t r = 0; r < height; ++r)
+  {
+    for (uint32_t c = 0; c < width; ++c)
+    {
+      Draw(c + pos.GetX(), r + pos.GetY(), image.GetPixels()[GetIndex(width, r, c)]);
     }
   }
 }

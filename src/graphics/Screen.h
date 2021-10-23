@@ -15,6 +15,8 @@
 #include <vector>
 #include <algorithm>
 
+class BMPImage;
+
 struct SDL_Window;
 struct SDL_Surface;
 
@@ -37,6 +39,7 @@ public:
   void Draw(const Triangle& triangle, const Color& color, bool fill = false, const Color& fillColor = Color::White().GetPixelColor());
   void Draw(const AARectangle& rect, const Color& color, bool fill = false, const Color& fillColor = Color::White().GetPixelColor());
   void Draw(const Circle& circle, const Color& color, bool fill = false, const Color& fillColor = Color::White().GetPixelColor());
+  void Draw(const BMPImage& image, const Vec2D& pos);
 
 private:
   Screen(const Screen& screen);

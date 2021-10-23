@@ -23,6 +23,8 @@ add_executable(
   src/graphics/Screen.h
   src/graphics/ScreenBuffer.cpp
   src/graphics/ScreenBuffer.h
+  src/graphics/BMPImage.h
+  src/graphics/BMPImage.cpp
   src/input/GameController.cpp
   src/input/GameController.h
   src/input/InputAction.h
@@ -60,5 +62,7 @@ add_executable(
 )
 
 file(COPY src/assets/BreakoutLevels.txt DESTINATION assets)
+file(COPY src/assets/ArcadeFont.txt DESTINATION assets)
+file(COPY src/assets/ArcadeFont.bmp DESTINATION assets)
 
 target_link_libraries(${PROJECT_NAME} SDL2)

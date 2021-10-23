@@ -9,6 +9,8 @@
 #include "../shapes/AARectangle.h"
 #include "../shapes/Circle.h"
 #include "../input/GameController.h"
+#include "../graphics/BMPImage.h"
+#include "../app/App.h"
 
 enum eGame
 {
@@ -31,6 +33,8 @@ public:
 private:
   std::unique_ptr<Scene> GetScene(eGame game);
 
+  //temp
+  BMPImage mTempImage;
 };
 
 #endif
