@@ -8,6 +8,13 @@
 #include "BreakoutGameLevel.h"
 #include <vector>
 
+enum BreakOutGameState
+{
+  IN_PLAY = 0,
+  IN_SERVE,
+  IN_GAME_OVER
+};
+
 class BreakOut : public Game
 {
 public:
@@ -20,13 +27,16 @@ private:
   void ResetGame();
 
   BreakoutGameLevel& GetCurrentLevel();
+  void SetToServeState();
 
+  const float INITIAL_BALL_SPEED = 100;
   const Vec2D INITIAL_BALL_VELOCITY = Vec2D(100, -100);
   Paddle mPaddle;
   Ball mBall;
   LevelBoundary mLevelBoundary;
   std::vector<BreakoutGameLevel> mLevels;
   size_t mCurrentLevel;
+  BreakOutGameState mGameState;
 };
 
 #endif
