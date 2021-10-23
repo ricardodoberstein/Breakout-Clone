@@ -16,6 +16,12 @@
 #include <algorithm>
 #include "../graphics/SpriteSheet.h"
 #include "BitmapFont.h"
+#include <functional>
+#include <iostream>
+
+struct SDL_Renderer;
+struct SDL_PixelFormat;
+struct SDL_Texture;
 
 class BMPImage;
 
@@ -28,7 +34,7 @@ public:
   Screen();
   ~Screen();
 
-  SDL_Window *Init(uint32_t w, uint32_t h, uint32_t mag);
+  SDL_Window *Init(uint32_t w, uint32_t h, uint32_t mag, bool fast = true);
   void SwapScreen();
 
   inline void SetClearColor(const Color &clearColor) { mClearColor = clearColor; }
@@ -51,7 +57,9 @@ private:
   Screen &operator=(const Screen &screen);
 
   void ClearScreen();
-  void FillPoly(const std::vector<Vec2D> &points, const Color &color);
+
+  using FillPolyFunc = std::function<Color(uint32_t x, uint32_t y)>;
+  void FillPoly(const std::vector<Vec2D> &points, FillPolyFunc func);
 
   uint32_t mWidth;
   uint32_t mHeight;
@@ -61,6 +69,11 @@ private:
 
   SDL_Window *noptrWindow;
   SDL_Surface *noptrSurface;
+
+  SDL_Renderer* mRenderer;
+  SDL_PixelFormat* mPixelFormat;
+  SDL_Texture* mTexture;
+  bool mFast;
 };
 
 #endif

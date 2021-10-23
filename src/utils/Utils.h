@@ -22,7 +22,7 @@ unsigned int GetIndex(unsigned int width, unsigned int r, unsigned int c);
 
 bool StringCompare(const std::string& a, const std::string& b);
 
-float Clam(float val, float min, float max);
+float Clamp(float val, float min, float max);
 
 struct Size
 {
