@@ -244,3 +244,16 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 
 	return levels;
 }
+
+bool BreakoutGameLevel::IsLevelComplete() const
+{
+	for(size_t i = 0; i < mBlocks.size(); ++i)
+	{
+		if (!mBlocks[i].IsDestroyed() && mBlocks[i].GetHP() != Block::UNBREAKABLE)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}

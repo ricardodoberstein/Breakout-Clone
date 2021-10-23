@@ -7,6 +7,7 @@
 #include "LevelBoundary.h"
 #include "BreakoutGameLevel.h"
 #include <vector>
+#include "../../shapes/Circle.h"
 
 enum BreakOutGameState
 {
@@ -24,7 +25,13 @@ public:
   virtual const std::string& GetName() override;
 
 private:
-  void ResetGame();
+  const int NUM_LIVES = 3;
+  bool IsBallPassedCutoffY() const;
+  void ReduceLifeByOne();
+  
+  inline bool IsGameOver() const { return mLives < 0; }
+
+  void ResetGame(size_t toLevel = 0);
 
   BreakoutGameLevel& GetCurrentLevel();
   void SetToServeState();
@@ -37,6 +44,8 @@ private:
   std::vector<BreakoutGameLevel> mLevels;
   size_t mCurrentLevel;
   BreakOutGameState mGameState;
+  int mLives;
+  float mYCutoff;
 };
 
 #endif
