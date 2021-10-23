@@ -301,16 +301,21 @@ void Screen::FillPoly(const std::vector<Vec2D> &points, const Color &color)
   }
 }
 
-void Screen::Draw(const BMPImage& image, const Vec2D& pos)
+void Screen::Draw(const BMPImage &image, const Sprite &sprite, const Vec2D &pos)
 {
-  uint32_t width = image.GetWidth();
-  uint32_t height = image.GetHeight();
+  uint32_t width = sprite.width;
+  uint32_t height = sprite.height;
 
   for(uint32_t r = 0; r < height; ++r)
   {
     for (uint32_t c = 0; c < width; ++c)
     {
-      Draw(c + pos.GetX(), r + pos.GetY(), image.GetPixels()[GetIndex(width, r, c)]);
+      Draw(c + pos.GetX(), r + pos.GetY(), image.GetPixels()[GetIndex(image.GetWidth(), r + sprite.yPos, c + sprite.xPos)]);
     }
   }
+}
+
+void Screen::Draw(const SpriteSheet &ss, const std::string &spriteName, const Vec2D &pos)
+{
+  Draw(ss.GetBMPImage(), ss.GetSprite(spriteName), pos);
 }

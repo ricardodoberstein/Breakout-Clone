@@ -14,6 +14,7 @@
 #include "../utils/Utils.h"
 #include <vector>
 #include <algorithm>
+#include "../graphics/SpriteSheet.h"
 
 class BMPImage;
 
@@ -26,27 +27,28 @@ public:
   Screen();
   ~Screen();
 
-  SDL_Window* Init(uint32_t w, uint32_t h, uint32_t mag);
+  SDL_Window *Init(uint32_t w, uint32_t h, uint32_t mag);
   void SwapScreen();
 
-  inline void SetClearColor(const Color& clearColor) { mClearColor = clearColor; }
+  inline void SetClearColor(const Color &clearColor) { mClearColor = clearColor; }
   inline uint32_t Width() const { return mWidth; }
   inline uint32_t Height() const { return mHeight; }
 
-  void Draw(int x, int y, const Color& color);
-  void Draw(const Vec2D& point, const Color& color);
-  void Draw(const Line2D& line, const Color& color);
-  void Draw(const Triangle& triangle, const Color& color, bool fill = false, const Color& fillColor = Color::White().GetPixelColor());
-  void Draw(const AARectangle& rect, const Color& color, bool fill = false, const Color& fillColor = Color::White().GetPixelColor());
-  void Draw(const Circle& circle, const Color& color, bool fill = false, const Color& fillColor = Color::White().GetPixelColor());
-  void Draw(const BMPImage& image, const Vec2D& pos);
+  void Draw(int x, int y, const Color &color);
+  void Draw(const Vec2D &point, const Color &color);
+  void Draw(const Line2D &line, const Color &color);
+  void Draw(const Triangle &triangle, const Color &color, bool fill = false, const Color &fillColor = Color::White().GetPixelColor());
+  void Draw(const AARectangle &rect, const Color &color, bool fill = false, const Color &fillColor = Color::White().GetPixelColor());
+  void Draw(const Circle &circle, const Color &color, bool fill = false, const Color &fillColor = Color::White().GetPixelColor());
+  void Draw(const BMPImage &image, const Sprite &sprite, const Vec2D &pos);
+  void Draw(const SpriteSheet &ss, const std::string &spriteName, const Vec2D &pos);
 
 private:
-  Screen(const Screen& screen);
-  Screen& operator=(const Screen& screen);
-  
+  Screen(const Screen &screen);
+  Screen &operator=(const Screen &screen);
+
   void ClearScreen();
-  void FillPoly(const std::vector<Vec2D>& points, const Color &color);
+  void FillPoly(const std::vector<Vec2D> &points, const Color &color);
 
   uint32_t mWidth;
   uint32_t mHeight;

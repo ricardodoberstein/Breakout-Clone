@@ -25,6 +25,10 @@ add_executable(
   src/graphics/ScreenBuffer.h
   src/graphics/BMPImage.h
   src/graphics/BMPImage.cpp
+  src/graphics/SpriteSheet.h
+  src/graphics/SpriteSheet.cpp
+  src/graphics/BitmapFont.h
+  src/graphics/BitmapFont.cpp
   src/input/GameController.cpp
   src/input/GameController.h
   src/input/InputAction.h

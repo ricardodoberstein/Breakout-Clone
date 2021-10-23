@@ -1,6 +1,10 @@
 #ifndef UTILS_UTILS_H_
 #define UTILS_UTILS_H_
 
+#include <string>
+#include <algorithm>
+#include <cctype>
+
 static const float EPSILON = 0.0001f;
 
 const float PI = 3.14159;
@@ -15,5 +19,7 @@ bool IsLessThanOrEqual(float x, float y);
 float MillisecondsToSeconds(unsigned int milliseconds);
 
 unsigned int GetIndex(unsigned int width, unsigned int r, unsigned int c);
+
+bool StringCompare(const std::string& a, const std::string& b);
 
 #endif
