@@ -12,8 +12,10 @@
 #include <vector>
 #include "../scenes/Scene.h"
 #include "../input/InputController.h"
-#include "../games/breakout/BreakOut.h"
 #include "../scenes/GameScene.h"
+
+class BreakOut;
+class BreakoutGameLevel;
 
 struct SDL_Window;
 
@@ -30,6 +32,8 @@ public:
   void PushScene(std::unique_ptr<Scene> scene);
   void PopScene();
   Scene* TopScene();
+
+  static const std::string& GetBasePath();
 
 private:
   Screen mScreen;

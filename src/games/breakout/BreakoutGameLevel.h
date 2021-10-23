@@ -1,13 +1,14 @@
 #ifndef GAMES_BREAKOUT_BREAKOUTGAMELEVEL_H_
 #define GAMES_BREAKOUT_BREAKOUTGAMELEVEL_H_
 
+#include "Block.h"
 #include <vector>
+#include <stdint.h>
 #include "../../graphics/Screen.h"
 #include "Ball.h"
 #include "../../shapes/AARectangle.h"
-#include "Block.h"
-#include <stdint.h>
-#include <iostream>
+#include "../../app/App.h"
+#include "../../utils/FileCommandLoader.h"
 
 class BreakoutGameLevel
 {
@@ -18,6 +19,8 @@ public:
   void Load(const std::vector<Block> &blocks);
   void Update(uint32_t dt, Ball &ball);
   void Draw(Screen &screen);
+
+  static std::vector<BreakoutGameLevel> LoadLevelsFromFile(const std::string& filePath);
 
 private:
 	static const int BLOCK_WIDTH = 16;

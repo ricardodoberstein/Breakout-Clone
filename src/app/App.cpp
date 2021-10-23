@@ -1,4 +1,7 @@
 #include "App.h"
+#include "../games/breakout/BreakOut.h"
+#include "../games/breakout/BreakoutGameLevel.h"
+#include <iostream>
 
 App &App::Singleton()
 {
@@ -107,4 +110,11 @@ Scene *App::TopScene()
   }
 
   return mSceneStack.back().get();
+}
+
+const std::string& App::GetBasePath()
+{
+  static std::string basePath = SDL_GetBasePath();
+
+  return basePath;
 }

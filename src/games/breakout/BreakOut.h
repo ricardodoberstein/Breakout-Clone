@@ -2,14 +2,11 @@
 #define GAMES_BREAKOUT_BREAKOUT_H_
 
 #include "../Game.h"
-#include <iostream>
-#include <string>
 #include "Paddle.h"
-#include "../../input/GameController.h"
-#include "../../app/App.h"
 #include "Ball.h"
 #include "LevelBoundary.h"
 #include "BreakoutGameLevel.h"
+#include <vector>
 
 class BreakOut : public Game
 {
@@ -21,11 +18,15 @@ public:
 
 private:
   void ResetGame();
+
+  BreakoutGameLevel& GetCurrentLevel();
+
   const Vec2D INITIAL_BALL_VELOCITY = Vec2D(100, -100);
   Paddle mPaddle;
   Ball mBall;
   LevelBoundary mLevelBoundary;
-  BreakoutGameLevel mLevel;
+  std::vector<BreakoutGameLevel> mLevels;
+  size_t mCurrentLevel;
 };
 
 #endif

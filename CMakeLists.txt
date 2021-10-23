@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
+set (CMAKE_CXX_STANDARD 14)
+
 project(Arcade)
 
 add_executable(
@@ -56,5 +58,7 @@ add_executable(
   src/games/breakout/BreakoutGameLevel.h
   src/games/breakout/BreakoutGameLevel.cpp
 )
+
+file(COPY src/assets/BreakoutLevels.txt DESTINATION assets)
 
 target_link_libraries(${PROJECT_NAME} SDL2)
