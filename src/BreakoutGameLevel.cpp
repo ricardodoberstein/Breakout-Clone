@@ -1,6 +1,6 @@
 #include "BreakoutGameLevel.h"
 
-BreakoutGameLevel::BreakoutGameLevel()
+BreakoutGameLevel::BreakoutGameLevel(): onBlockDestroyed(nullptr)
 {
 }
 
@@ -47,6 +47,10 @@ void BreakoutGameLevel::Update(uint32_t dt, Ball &ball)
 	{
 		noptrBlockToBounceOffOf->Bounce(ball, edgeToBounceOffOf);
 		noptrBlockToBounceOffOf->ReduceHP();
+		if (noptrBlockToBounceOffOf->IsDestroyed())
+		{
+			onBlockDestroyed(*noptrBlockToBounceOffOf);
+		}
 	}
 
 	for (const auto &block : collidedBlocks)
@@ -195,6 +199,8 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 		layoutBlocks.back().hp = FileCommandLoader::ReadInt(params);
 	};
 
+	fileLoader.AddCommand(hpCommand);
+
 	Command pointsCommand;
 	pointsCommand.command = "points";
 	pointsCommand.parseFunction = [&](ParseFuncParams params)
@@ -202,7 +208,7 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 		layoutBlocks.back().points = FileCommandLoader::ReadInt(params);
 	};
 
-	fileLoader.AddCommand(hpCommand);
+	fileLoader.AddCommand(pointsCommand);
 
 	Command widthCommand;
 	widthCommand.command = "width";

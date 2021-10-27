@@ -13,7 +13,7 @@ public:
   static const int UNBREAKABLE = -1;
 
   Block();
-  void Init(const AARectangle &rect, int hp, const Color &outlineColor, const Color &fillColor, const int &points = 1);
+  void Init(const AARectangle &rect, int hp, const Color &outlineColor, const Color &fillColor, int points = 1);
   void Draw(Screen &screen);
   void Bounce(Ball &bounce, const BoundaryEdge &edge);
 

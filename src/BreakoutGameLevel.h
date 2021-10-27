@@ -9,6 +9,7 @@
 #include "AARectangle.h"
 #include "App.h"
 #include "FileCommandLoader.h"
+#include <functional>
 
 class BreakoutGameLevel
 {
@@ -22,6 +23,8 @@ public:
 
   bool IsLevelComplete() const;
   static std::vector<BreakoutGameLevel> LoadLevelsFromFile(const std::string& filePath);
+  
+  std::function<void (const Block& block)> onBlockDestroyed;
 
 private:
 	static const int BLOCK_WIDTH = 16;

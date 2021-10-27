@@ -133,7 +133,7 @@ void BreakOut::Draw(Screen &screen)
   screen.Draw(mLevelBoundary.GetAARectangle(), Color::White());
 
   Circle lifeCircle = {Vec2D(7, App::Singleton().Height() - 10), 5};
-  
+
   for (int i = 0; i < mLives; ++i)
   {
     screen.Draw(lifeCircle, Color::Red(), true, Color::Red());
@@ -155,12 +155,21 @@ void BreakOut::ResetGame(size_t toLevel)
 {
   mPoints = 0;
   mLevels = BreakoutGameLevel::LoadLevelsFromFile(Path::GetBasePath() + "assets/BreakoutLevels.txt");
-  mYCutoff = App::Singleton().Height() - 2*Paddle::PADDLE_HEIGHT;
+
+  if (GetCurrentLevel().onBlockDestroyed == nullptr)
+  {
+    GetCurrentLevel().onBlockDestroyed = [&](const Block &block)
+    {
+      mPoints += block.GetPoints();
+    };
+  }
+
+  mYCutoff = App::Singleton().Height() - 2 * Paddle::PADDLE_HEIGHT;
   mLives = NUM_LIVES;
   mCurrentLevel = toLevel;
 
   AARectangle paddleRect = {Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - 30), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT};
-  
+
   float x_position = (App::Singleton().Width() / 2) - 122;
   float y_position = 0;
   AARectangle levelBoundary = {Vec2D(x_position, y_position), 244, 288};
@@ -193,7 +202,7 @@ bool BreakOut::IsBallPassedCutoffY() const
 
 void BreakOut::ReduceLifeByOne()
 {
-  if(mLives >= 0)
+  if (mLives >= 0)
   {
     --mLives;
   }

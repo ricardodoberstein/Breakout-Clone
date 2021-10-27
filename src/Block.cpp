@@ -5,7 +5,7 @@ Block::Block():	mOutlineColor(Color::White()), mFillColor(Color::White()), mHp(1
 
 }
 
-void Block::Init(const AARectangle& rect, int hp, const Color& outlineColor, const Color& fillColor, const int &points)
+void Block::Init(const AARectangle& rect, int hp, const Color& outlineColor, const Color& fillColor, int points)
 {
 	Excluder::Init(rect);
 	mHp = hp;
