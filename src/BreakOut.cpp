@@ -139,6 +139,10 @@ void BreakOut::Draw(Screen &screen)
     screen.Draw(lifeCircle, Color::Red(), true, Color::Red());
     lifeCircle.MoveBy(Vec2D(17, 0));
   }
+
+  std::string points = std::to_string(mPoints);
+  Vec2D gameTopLeft = mLevelBoundary.GetAARectangle().GetTopLeftPoint();
+  screen.Draw(App::Singleton().GetFont(), points, Vec2D(gameTopLeft.GetX() + 3, gameTopLeft.GetY() + 3), Color::White());
 }
 
 const std::string &BreakOut::GetName()
@@ -149,6 +153,7 @@ const std::string &BreakOut::GetName()
 
 void BreakOut::ResetGame(size_t toLevel)
 {
+  mPoints = 0;
   mLevels = BreakoutGameLevel::LoadLevelsFromFile(Path::GetBasePath() + "assets/BreakoutLevels.txt");
   mYCutoff = App::Singleton().Height() - 2*Paddle::PADDLE_HEIGHT;
   mLives = NUM_LIVES;

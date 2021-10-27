@@ -106,6 +106,7 @@ struct LayoutBlock
 	char symbol = '-';
 	int hp = 0;
 	Color color = Color::Black();
+	int points;
 };
 
 LayoutBlock FindLayoutBlockForSymbol(const std::vector<LayoutBlock> &blocks, char symbol)
@@ -194,6 +195,13 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 		layoutBlocks.back().hp = FileCommandLoader::ReadInt(params);
 	};
 
+	Command pointsCommand;
+	pointsCommand.command = "points";
+	pointsCommand.parseFunction = [&](ParseFuncParams params)
+	{
+		layoutBlocks.back().points = FileCommandLoader::ReadInt(params);
+	};
+
 	fileLoader.AddCommand(hpCommand);
 
 	Command widthCommand;
@@ -229,7 +237,7 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 				LayoutBlock layoutBlock = FindLayoutBlockForSymbol(layoutBlocks, params.line[c]);
 
 				Block b;
-				b.Init(blockRect, layoutBlock.hp, Color::Black(), layoutBlock.color);
+				b.Init(blockRect, layoutBlock.hp, Color::Black(), layoutBlock.color, layoutBlock.points);
 				levelBlocks.push_back(b);
 			}
 			blockRect.MoveBy(Vec2D(BLOCK_WIDTH, 0));

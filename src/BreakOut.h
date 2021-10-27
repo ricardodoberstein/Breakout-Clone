@@ -8,6 +8,7 @@
 #include "BreakoutGameLevel.h"
 #include <vector>
 #include "Circle.h"
+#include "BitmapFont.h"
 
 enum BreakOutGameState
 {
@@ -45,6 +46,7 @@ private:
   size_t mCurrentLevel;
   BreakOutGameState mGameState;
   int mLives;
+  int mPoints;
   float mYCutoff;
 };
 

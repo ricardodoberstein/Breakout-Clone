@@ -5,12 +5,13 @@ Block::Block():	mOutlineColor(Color::White()), mFillColor(Color::White()), mHp(1
 
 }
 
-void Block::Init(const AARectangle& rect, int hp, const Color& outlineColor, const Color& fillColor)
+void Block::Init(const AARectangle& rect, int hp, const Color& outlineColor, const Color& fillColor, const int &points)
 {
 	Excluder::Init(rect);
 	mHp = hp;
 	mOutlineColor = outlineColor;
 	mFillColor = fillColor;
+	mPoints = points;
 }
 
 void Block::Draw(Screen& screen)

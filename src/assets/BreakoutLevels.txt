@@ -4,21 +4,25 @@
 :symbol r
 :fillcolor 163 30 10 255
 :hp 1
+:points 7
 
 :block
 :symbol o
 :fillcolor 194 133 10 255
 :hp 1
+:points 5
 
 :block
 :symbol g
 :fillcolor 10 133 51 255
 :hp 1
+:points 3
 
 :block
 :symbol y
 :fillcolor 194 194 41 255
 :hp 1
+:points 1
 
 :width 14
 :height 13
