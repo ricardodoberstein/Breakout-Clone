@@ -7,7 +7,6 @@
 #include "Vec2D.h"
 #include "Color.h"
 #include "Screen.h"
-#include "ArcadeScene.h"
 #include <memory>
 #include <vector>
 #include "Scene.h"

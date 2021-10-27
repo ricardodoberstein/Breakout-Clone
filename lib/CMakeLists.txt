@@ -1,3 +1,5 @@
+project(lib)
+
 add_library(
   lib
   AARectangle.h
@@ -42,4 +44,8 @@ add_library(
   BoundaryEdge.h
   Excluder.cpp
   Excluder.h
+  App.h
+  App.cpp
 )
+
+target_link_libraries(${PROJECT_NAME} SDL2)
