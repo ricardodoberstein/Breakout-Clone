@@ -1,7 +1,7 @@
 project(lib)
 
 add_library(
-  lib
+  ${PROJECT_NAME}
   AARectangle.h
   AARectangle.cpp
   BitmapFont.h

@@ -35,7 +35,7 @@ public:
 private:
   uint32_t mDirection;
   AARectangle mBoundary;
-  const float VELOCITY = 100.0f;
+  const float VELOCITY = 150.0f;
   const float CORNER_BOUNCE_AMT = 0.2f;
 };
 
