@@ -50,7 +50,7 @@ void Paddle::Update(uint32_t dt, Ball &ball)
 
 void Paddle::Draw(Screen &screen)
 {
-  screen.Draw(GetAARectangle(), Color::Blue(), true, Color::Blue());
+  screen.Draw(GetAARectangle(), Color(10, 133, 194, 255), true, Color(10, 133, 194, 255));
 }
 
 bool Paddle::Bounce(Ball &ball)
