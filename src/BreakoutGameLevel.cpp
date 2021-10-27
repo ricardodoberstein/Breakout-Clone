@@ -147,8 +147,11 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 		width = 0;
 		height = 0;
 
+		float x_position = (App::Singleton().Width() / 2) - 122;
+  	float y_position = 0;
+
 		BreakoutGameLevel level;
-		level.Init(AARectangle(Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height()));
+		level.Init(AARectangle(Vec2D(x_position, y_position), 244, 288));
 
 		levels.push_back(level);
 	};
@@ -216,8 +219,8 @@ std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::
 	layoutCommand.command = "layout";
 	layoutCommand.parseFunction = [&](ParseFuncParams params)
 	{
-		float startingX = 0;
-		AARectangle blockRect(Vec2D(startingX, (params.lineNum + 1) * BLOCK_HEIGHT), BLOCK_WIDTH, BLOCK_HEIGHT);
+		float x_position = (App::Singleton().Width() / 2) - 122;;
+		AARectangle blockRect(Vec2D(x_position, (params.lineNum + 1) * BLOCK_HEIGHT), BLOCK_WIDTH, BLOCK_HEIGHT);
 
 		for (int c = 0; c < params.line.length(); ++c)
 		{

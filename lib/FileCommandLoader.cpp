@@ -1,9 +1,3 @@
-/*
- * FileCommandLoader.cpp
- *
- *  Created on: Jan. 14, 2019
- *      Author: serge
- */
 #include "FileCommandLoader.h"
 #include <fstream>
 #include <iostream>

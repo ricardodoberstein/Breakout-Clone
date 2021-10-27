@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-const float Ball::RADIUS = 5.0f;
+const float Ball::RADIUS = 2.0f;
 
 Ball::Ball() : Ball(Vec2D::Zero, Ball::RADIUS)
 {

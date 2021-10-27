@@ -18,8 +18,8 @@ enum PaddleDirection
 class Paddle : public Excluder
 {
 public:
-  static const uint32_t PADDLE_WIDTH = 50;
-  static const uint32_t PADDLE_HEIGHT = 10;
+  static const uint32_t PADDLE_WIDTH = 30;
+  static const uint32_t PADDLE_HEIGHT = 4;
   void Init(const AARectangle &rect, const AARectangle &boundary);
   void Update(uint32_t dt, Ball &ball);
   void Draw(Screen &screen);

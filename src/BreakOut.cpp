@@ -155,7 +155,10 @@ void BreakOut::ResetGame(size_t toLevel)
   mCurrentLevel = toLevel;
 
   AARectangle paddleRect = {Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - 30), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT};
-  AARectangle levelBoundary = {Vec2D::Zero, App::Singleton().Width(), App::Singleton().Height()};
+  
+  float x_position = (App::Singleton().Width() / 2) - 122;
+  float y_position = 0;
+  AARectangle levelBoundary = {Vec2D(x_position, y_position), 244, 288};
 
   mLevelBoundary = {levelBoundary};
 

@@ -14,9 +14,6 @@
 #include "GameScene.h"
 #include "BitmapFont.h"
 
-class BreakOut;
-class BreakoutGameLevel;
-
 struct SDL_Window;
 
 class App

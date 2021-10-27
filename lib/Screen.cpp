@@ -47,7 +47,7 @@ SDL_Window *Screen::Init(uint32_t w, uint32_t h, uint32_t mag, bool fast)
   mWidth = w;
   mHeight = h;
 
-  noptrWindow = SDL_CreateWindow("Arcade", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mWidth * mag, mHeight * mag, 0);
+  noptrWindow = SDL_CreateWindow("Arcade", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mWidth * mag, mHeight * mag, SDL_WINDOW_FULLSCREEN_DESKTOP);
 
   if (noptrWindow)
   {
