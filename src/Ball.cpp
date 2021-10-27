@@ -6,13 +6,13 @@ Ball::Ball() : Ball(Vec2D::Zero, Ball::RADIUS)
 {
 }
 
-Ball::Ball(const Vec2D &pos, float radius) : mBBox(pos - Vec2D(radius, radius), radius * 2.0f, radius * 2.0f), mVelocity(Vec2D::Zero)
+Ball::Ball(const Vec2D &pos, float radius) : mBBox(pos - Vec2D(radius, radius), radius * 2.0f, radius * 2.0f), mVelocity(Vec2D::Zero), mVelocityMultipler(1.0f)
 {
 }
 
 void Ball::Update(uint32_t dt)
 {
-  mBBox.MoveBy(mVelocity * MillisecondsToSeconds(dt));
+  mBBox.MoveBy((mVelocity * mVelocityMultipler) * MillisecondsToSeconds(dt));
 }
 
 void Ball::Draw(Screen &screen)

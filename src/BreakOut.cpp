@@ -143,6 +143,14 @@ void BreakOut::Draw(Screen &screen)
   std::string points = std::to_string(mPoints);
   Vec2D gameTopLeft = mLevelBoundary.GetAARectangle().GetTopLeftPoint();
   screen.Draw(App::Singleton().GetFont(), points, Vec2D(gameTopLeft.GetX() + 3, gameTopLeft.GetY() + 3), Color::White());
+
+  if (mGameState == IN_GAME_OVER)
+  {
+    std::string gameOver = "Game Over";
+    BitmapFont font = App::Singleton().GetFont();
+    Size size = font.GetSizeOf(gameOver);
+    screen.Draw(App::Singleton().GetFont(), gameOver,  Vec2D(App::Singleton().Width() / 2 - (size.width / 2), App::Singleton().Height() / 2 - (size.height - 2)), Color::White());
+  }
 }
 
 const std::string &BreakOut::GetName()
@@ -154,12 +162,39 @@ const std::string &BreakOut::GetName()
 void BreakOut::ResetGame(size_t toLevel)
 {
   mPoints = 0;
+  mHits = 0;
+  mOrangeContact = false;
+  mRedContact = false;
   mLevels = BreakoutGameLevel::LoadLevelsFromFile(Path::GetBasePath() + "assets/BreakoutLevels.txt");
+  mBall.ResetVelocity();
 
   if (GetCurrentLevel().onBlockDestroyed == nullptr)
   {
     GetCurrentLevel().onBlockDestroyed = [&](const Block &block)
     {
+      mHits += 1;
+
+      if (mHits == 4)
+      {
+        mBall.IncreaseVelocity(0.2f);
+      }
+
+      if (mOrangeContact == false)
+      {
+        if (block.GetFillColor().GetRed() == 193 && block.GetFillColor().GetGreen() == 133 && block.GetFillColor().GetBlue() == 10)
+        {
+          mBall.IncreaseVelocity(0.2f);
+        }
+      }
+
+      if (mRedContact == false)
+      {
+        if (block.GetFillColor().GetRed() == 163 && block.GetFillColor().GetGreen() == 30 && block.GetFillColor().GetBlue() == 10)
+        {
+          mBall.IncreaseVelocity(0.2f);
+        }
+      }
+
       mPoints += block.GetPoints();
     };
   }

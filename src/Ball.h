@@ -27,10 +27,14 @@ public:
   inline Vec2D GetVelocity() const { return mVelocity; }
   inline float GetRadius() const { return mBBox.GetWidth() / 2.0f; }
   inline Vec2D GetPosition() const { return mBBox.GetCenterPoint(); }
+  inline void IncreaseVelocity(float multipler) { mVelocityMultipler += multipler; }
+  inline void DecreaseVelocity(float multipler) { mVelocityMultipler -= multipler; }
+  inline void ResetVelocity() { mVelocityMultipler = 1.0f; }
 
 private:
   AARectangle mBBox;
   Vec2D mVelocity;
+  float mVelocityMultipler;
 
   static const float RADIUS;
 };

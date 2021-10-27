@@ -1,4 +1,9 @@
 #include "Paddle.h"
+#include "Screen.h"
+#include "Utils.h"
+#include "BoundaryEdge.h"
+#include "Ball.h"
+#include <cassert>
 
 void Paddle::Init(const AARectangle &rect, const AARectangle &boundary)
 {
@@ -50,12 +55,13 @@ void Paddle::Update(uint32_t dt, Ball &ball)
 
 void Paddle::Draw(Screen &screen)
 {
-  screen.Draw(GetAARectangle(), Color(10, 133, 194, 255), true, Color(10, 133, 194, 255));
+  screen.Draw(GetAARectangle(), Color::Blue(), true, Color::Blue());
 }
 
 bool Paddle::Bounce(Ball &ball)
 {
   BoundaryEdge edge;
+
   if (HasCollided(ball.GetBoundingRect(), edge))
   {
     Vec2D pointOnEdge;
@@ -65,10 +71,11 @@ bool Paddle::Bounce(Ball &ball)
     if (edge.edge == GetEdge(TOP_EDGE).edge)
     {
       float edgeLength = edge.edge.Length();
+      assert(!IsEqual(edgeLength, 0));
       float tx = (pointOnEdge.GetX() - edge.edge.GetP0().GetX()) / edgeLength;
 
       if (((tx <= CORNER_BOUNCE_AMT) && ball.GetVelocity().GetX() > 0) ||
-          (tx >= (1.0f - CORNER_BOUNCE_AMT && ball.GetVelocity().GetX() < 0)))
+          (tx >= (1.0f - CORNER_BOUNCE_AMT) && ball.GetVelocity().GetX() < 0))
       {
         ball.SetVelocity(-ball.GetVelocity());
         return true;

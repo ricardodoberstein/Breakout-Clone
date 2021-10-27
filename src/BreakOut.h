@@ -48,6 +48,9 @@ private:
   int mLives;
   int mPoints;
   float mYCutoff;
+  int mHits;
+  bool mOrangeContact;
+  bool mRedContact;
 };
 
 #endif
