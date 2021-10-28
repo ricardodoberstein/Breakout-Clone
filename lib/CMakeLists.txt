@@ -46,6 +46,9 @@ add_library(
   Excluder.h
   App.h
   App.cpp
+  DGame.h
+  Math/Vector2.h
+  Math/Vector2.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} SDL2)
