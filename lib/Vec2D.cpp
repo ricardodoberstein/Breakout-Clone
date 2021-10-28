@@ -5,6 +5,16 @@
 
 const Vec2D Vec2D::Zero;
 
+Vec2D::Vec2D(): Vec2D(0, 0) 
+{
+  
+}
+
+Vec2D::Vec2D(float x, float y): mX(x), mY(y)
+{
+  
+}
+
 std::ostream &operator<<(std::ostream &consoleOut, const Vec2D &vec)
 {
   consoleOut << "X: " << vec.mX << " Y: " << vec.mY << std::endl;
@@ -19,6 +29,26 @@ bool Vec2D::operator==(const Vec2D &vec2) const
 bool Vec2D::operator!=(const Vec2D &vec2) const
 {
   return !(*this == vec2);
+}
+
+void Vec2D::SetX(float x)
+{
+  mX = x;
+}
+
+void Vec2D::SetY(float y) 
+{
+  mY = y;
+}
+
+float Vec2D::GetX() const
+{
+  return mX;
+}
+
+float Vec2D::GetY() const
+{
+  return mY;
 }
 
 Vec2D Vec2D::operator-() const

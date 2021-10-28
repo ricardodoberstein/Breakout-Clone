@@ -149,7 +149,7 @@ void BreakOut::Draw(Screen &screen)
     std::string gameOver = "Game Over";
     BitmapFont font = App::Singleton().GetFont();
     Size size = font.GetSizeOf(gameOver);
-    screen.Draw(App::Singleton().GetFont(), gameOver,  Vec2D(App::Singleton().Width() / 2 - (size.width / 2), App::Singleton().Height() / 2 - (size.height - 2)), Color::White());
+    screen.Draw(App::Singleton().GetFont(), gameOver, Vec2D(App::Singleton().Width() / 2 - (size.width / 2), App::Singleton().Height() / 2 - (size.height - 2)), Color::White());
   }
 }
 
@@ -161,12 +161,17 @@ const std::string &BreakOut::GetName()
 
 void BreakOut::ResetGame(size_t toLevel)
 {
-  mPoints = 0;
-  mHits = 0;
-  mOrangeContact = false;
-  mRedContact = false;
+  if (toLevel == 0)
+  {
+    mPoints = 0;
+    mHits = 0;
+    mOrangeContact = false;
+    mRedContact = false;
+    mBall.ResetVelocity();
+    mLives = NUM_LIVES;
+  }
+
   mLevels = BreakoutGameLevel::LoadLevelsFromFile(Path::GetBasePath() + "assets/BreakoutLevels.txt");
-  mBall.ResetVelocity();
 
   if (GetCurrentLevel().onBlockDestroyed == nullptr)
   {
@@ -184,6 +189,7 @@ void BreakOut::ResetGame(size_t toLevel)
         if (block.GetFillColor().GetRed() == 193 && block.GetFillColor().GetGreen() == 133 && block.GetFillColor().GetBlue() == 10)
         {
           mBall.IncreaseVelocity(0.2f);
+          mOrangeContact = true;
         }
       }
 
@@ -192,6 +198,7 @@ void BreakOut::ResetGame(size_t toLevel)
         if (block.GetFillColor().GetRed() == 163 && block.GetFillColor().GetGreen() == 30 && block.GetFillColor().GetBlue() == 10)
         {
           mBall.IncreaseVelocity(0.2f);
+          mRedContact = true;
         }
       }
 
@@ -200,7 +207,6 @@ void BreakOut::ResetGame(size_t toLevel)
   }
 
   mYCutoff = App::Singleton().Height() - 2 * Paddle::PADDLE_HEIGHT;
-  mLives = NUM_LIVES;
   mCurrentLevel = toLevel;
 
   AARectangle paddleRect = {Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - 30), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT};
