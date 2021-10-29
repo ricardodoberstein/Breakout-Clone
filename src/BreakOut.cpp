@@ -1,6 +1,5 @@
 #include "BreakOut.h"
 #include <iostream>
-#include "Path.h"
 
 void BreakOut::Init(GameController &controller)
 {

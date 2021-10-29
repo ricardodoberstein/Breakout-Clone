@@ -4,12 +4,9 @@
 #include "Block.h"
 #include <vector>
 #include <stdint.h>
-#include "Screen.h"
 #include "Ball.h"
-#include "AARectangle.h"
-#include "App.h"
-#include "FileCommandLoader.h"
 #include <functional>
+#include "DGame/DGame.h"
 
 class BreakoutGameLevel
 {

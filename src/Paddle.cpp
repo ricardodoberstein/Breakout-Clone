@@ -1,7 +1,4 @@
 #include "Paddle.h"
-#include "Screen.h"
-#include "Utils.h"
-#include "BoundaryEdge.h"
 #include "Ball.h"
 #include <cassert>
 

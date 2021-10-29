@@ -1,11 +1,8 @@
 #ifndef BLOCK_H_
 #define BLOCK_H_
 
-#include "Excluder.h"
-#include "Color.h"
+#include "DGame/DGame.h"
 #include "Ball.h"
-#include "Screen.h"
-#include "BoundaryEdge.h"
 
 class Block : public Excluder
 {

@@ -1,13 +1,9 @@
 #ifndef PADDLE_H_
 #define PADDLE_H_
 
-#include "Excluder.h"
-#include "AARectangle.h"
 #include <stdint.h>
-#include "Screen.h"
-#include "Utils.h"
-#include "BoundaryEdge.h"
 #include "Ball.h"
+#include "DGame/DGame.h"
 
 enum PaddleDirection
 {

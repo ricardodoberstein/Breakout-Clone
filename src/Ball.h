@@ -1,12 +1,8 @@
 #ifndef BALL_H_
 #define BALL_H_
 
-#include "AARectangle.h"
-#include "Screen.h"
-#include "BoundaryEdge.h"
-#include "Vec2D.h"
+#include "DGame/DGame.h"
 #include <stdint.h>
-#include "Circle.h"
 
 class Ball
 {

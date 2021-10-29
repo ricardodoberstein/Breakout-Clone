@@ -1,10 +1,8 @@
 #ifndef LEVELBOUNDARY_H_
 #define LEVELBOUNDARY_H_
 
-#include "Excluder.h"
-#include "AARectangle.h"
 #include "Ball.h"
-#include "BoundaryEdge.h"
+#include "DGame/DGame.h"
 
 class LevelBoundary
 {

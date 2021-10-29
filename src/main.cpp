@@ -3,7 +3,6 @@ const int SCREEN_HEIGHT = 288;
 
 const int MAGNIFICATION = 3;
 
-#include "App.h"
 #include "BreakOut.h"
 #include "BreakoutGameLevel.h"
 #include "DGame.h"

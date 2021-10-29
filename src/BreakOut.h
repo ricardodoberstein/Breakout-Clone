@@ -1,14 +1,12 @@
 #ifndef BREAKOUT_H_
 #define BREAKOUT_H_
 
-#include "Game.h"
-#include "Paddle.h"
+#include "DGame/DGame.h"
 #include "Ball.h"
-#include "LevelBoundary.h"
 #include "BreakoutGameLevel.h"
+#include "Paddle.h"
+#include "LevelBoundary.h"
 #include <vector>
-#include "Circle.h"
-#include "BitmapFont.h"
 
 enum BreakOutGameState
 {

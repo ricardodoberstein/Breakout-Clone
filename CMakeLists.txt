@@ -21,15 +21,16 @@ add_executable(
   src/BreakoutGameLevel.cpp
 )
 
-add_subdirectory(lib src)
+add_subdirectory(lib/DGame src)
 
 target_include_directories(
   ${PROJECT_NAME} 
   PUBLIC lib
+  PUBLIC lib/DGame
 )
 
 file(COPY src/assets/BreakoutLevels.txt DESTINATION assets)
 file(COPY src/assets/ArcadeFont.txt DESTINATION assets)
 file(COPY src/assets/ArcadeFont.bmp DESTINATION assets)
 
-target_link_libraries(${PROJECT_NAME} lib)
+target_link_libraries(${PROJECT_NAME} DGame)
