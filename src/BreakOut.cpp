@@ -1,6 +1,8 @@
 #include "BreakOut.h"
 #include <iostream>
 
+using namespace DGame;
+
 void BreakOut::Init(GameController &controller)
 {
   controller.ClearAll();

@@ -1,5 +1,7 @@
 #include "Block.h"
 
+using namespace DGame;
+
 Block::Block():	mOutlineColor(Color::White()), mFillColor(Color::White()), mHp(1)
 {
 

@@ -4,6 +4,8 @@
 #include "DGame/DGame.h"
 #include "Ball.h"
 
+using namespace DGame;
+
 class Block : public Excluder
 {
 public:

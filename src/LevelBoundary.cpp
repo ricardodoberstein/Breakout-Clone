@@ -1,5 +1,7 @@
 #include "LevelBoundary.h"
 
+using namespace DGame;
+
 LevelBoundary::LevelBoundary(const AARectangle &boundary)
 {
   mIncluder.Init(boundary, true);

@@ -1,8 +1,11 @@
 #include "Path.h"
 
-const std::string &Path::GetBasePath()
+namespace DGame
 {
-  static std::string basePath = SDL_GetBasePath();
+  const std::string &Path::GetBasePath()
+  {
+    static std::string basePath = SDL_GetBasePath();
 
-  return basePath;
+    return basePath;
+  }
 }

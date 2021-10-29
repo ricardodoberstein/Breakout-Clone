@@ -4,6 +4,8 @@
 #include "DGame/DGame.h"
 #include <stdint.h>
 
+using namespace DGame;
+
 class Ball
 {
 public:

@@ -10,42 +10,45 @@
 #include <fstream>
 #include <iostream>
 
-enum CommandType
+namespace DGame
 {
-  COMMAND_ONE_LINE = 0,
-  COMMAND_MULTI_LINE
-};
+  enum CommandType
+  {
+    COMMAND_ONE_LINE = 0,
+    COMMAND_MULTI_LINE
+  };
 
-struct ParseFuncParams
-{
-  std::string line;
-  size_t dilimitPos;
-  uint32_t lineNum;
-};
+  struct ParseFuncParams
+  {
+    std::string line;
+    size_t dilimitPos;
+    uint32_t lineNum;
+  };
 
-using ParseFunc = std::function<void(const ParseFuncParams &params)>;
+  using ParseFunc = std::function<void(const ParseFuncParams &params)>;
 
-struct Command
-{
-  CommandType commandType = COMMAND_ONE_LINE;
-  std::string command = "";
-  ParseFunc parseFunction = nullptr;
-};
+  struct Command
+  {
+    CommandType commandType = COMMAND_ONE_LINE;
+    std::string command = "";
+    ParseFunc parseFunction = nullptr;
+  };
 
-class FileCommandLoader
-{
-public:
-  void AddCommand(const Command &command);
-  bool LoadFile(const std::string &filePath);
+  class FileCommandLoader
+  {
+  public:
+    void AddCommand(const Command &command);
+    bool LoadFile(const std::string &filePath);
 
-  static Color ReadColor(const ParseFuncParams &params);
-  static Vec2D ReadSize(const ParseFuncParams &params);
-  static int ReadInt(const ParseFuncParams &params);
-  static std::string ReadString(const ParseFuncParams &params);
-  static char ReadChar(const ParseFuncParams &params);
+    static Color ReadColor(const ParseFuncParams &params);
+    static Vec2D ReadSize(const ParseFuncParams &params);
+    static int ReadInt(const ParseFuncParams &params);
+    static std::string ReadString(const ParseFuncParams &params);
+    static char ReadChar(const ParseFuncParams &params);
 
-private:
-  std::vector<Command> mCommands;
-};
+  private:
+    std::vector<Command> mCommands;
+  };
+}
 
 #endif

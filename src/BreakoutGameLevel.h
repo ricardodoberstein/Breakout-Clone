@@ -8,6 +8,8 @@
 #include <functional>
 #include "DGame/DGame.h"
 
+using namespace DGame;
+
 class BreakoutGameLevel
 {
 public:

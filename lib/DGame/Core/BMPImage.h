@@ -7,20 +7,24 @@
 #include <string>
 #include <SDL2/SDL.h>
 
-class BMPImage
+namespace DGame
 {
-public:
-  BMPImage();
-  bool Load(const std::string &path);
+  class BMPImage
+  {
+  public:
+    BMPImage();
+    bool Load(const std::string &path);
 
-  inline const std::vector<Color>& GetPixels() const { return mPixels; }
-  inline const uint32_t GetWidth() const { return mWdith; }
-  inline const uint32_t GetHeight() const { return mHeight; }
+    inline const std::vector<Color> &GetPixels() const { return mPixels; }
+    inline const uint32_t GetWidth() const { return mWdith; }
+    inline const uint32_t GetHeight() const { return mHeight; }
 
-private:
-  std::vector<Color> mPixels;
-  uint32_t mWdith;
-  uint32_t mHeight;
-};
+  private:
+    std::vector<Color> mPixels;
+    uint32_t mWdith;
+    uint32_t mHeight;
+  };
+
+}
 
 #endif

@@ -4,10 +4,14 @@
 #include <string>
 #include <SDL2/SDL.h>
 
-class Path
+namespace DGame
 {
-public:
-  static const std::string &GetBasePath();
-};
+  class Path
+  {
+  public:
+    static const std::string &GetBasePath();
+  };
+
+}
 
 #endif

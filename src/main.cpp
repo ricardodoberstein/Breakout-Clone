@@ -7,6 +7,8 @@ const int MAGNIFICATION = 3;
 #include "BreakoutGameLevel.h"
 #include "DGame.h"
 
+using namespace DGame;
+
 int main()
 {
   if (App::Singleton().Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION))

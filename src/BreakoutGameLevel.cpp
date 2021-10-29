@@ -1,5 +1,7 @@
 #include "BreakoutGameLevel.h"
 
+using namespace DGame;
+
 BreakoutGameLevel::BreakoutGameLevel(): onBlockDestroyed(nullptr)
 {
 }

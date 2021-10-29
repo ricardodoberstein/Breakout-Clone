@@ -1,5 +1,7 @@
 #include "Ball.h"
 
+using namespace DGame;
+
 const float Ball::RADIUS = 3.0f;
 
 Ball::Ball() : Ball(Vec2D::Zero, Ball::RADIUS)

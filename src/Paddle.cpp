@@ -2,6 +2,8 @@
 #include "Ball.h"
 #include <cassert>
 
+using namespace DGame;
+
 void Paddle::Init(const AARectangle &rect, const AARectangle &boundary)
 {
   Excluder::Init(rect);

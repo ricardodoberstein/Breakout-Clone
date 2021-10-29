@@ -5,6 +5,8 @@
 #include "Ball.h"
 #include "DGame/DGame.h"
 
+using namespace DGame;
+
 enum PaddleDirection
 {
   LEFT = 1 << 0,

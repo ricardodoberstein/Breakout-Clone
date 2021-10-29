@@ -4,6 +4,8 @@
 #include "Ball.h"
 #include "DGame/DGame.h"
 
+using namespace DGame;
+
 class LevelBoundary
 {
 public:

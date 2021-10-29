@@ -5,18 +5,21 @@
 #include "GameController.h"
 #include "SDL2/SDL.h"
 
-class InputController
+namespace DGame
 {
-public:
-  InputController();
-  void Init(InputAction quitAction);
-  void Update(uint32_t dt);
+  class InputController
+  {
+  public:
+    InputController();
+    void Init(InputAction quitAction);
+    void Update(uint32_t dt);
 
-  void SetGameController(GameController *gameController);
+    void SetGameController(GameController *gameController);
 
-private:
-  InputAction mQuit;
-  GameController *mnoptrCurrentController;
-};
+  private:
+    InputAction mQuit;
+    GameController *mnoptrCurrentController;
+  };
+}
 
 #endif

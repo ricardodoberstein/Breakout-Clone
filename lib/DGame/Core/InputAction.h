@@ -4,30 +4,34 @@
 #include <functional>
 #include <stdint.h>
 
-using InputKey = uint8_t;
-using InputState = uint8_t;
-using MouseButton = uint8_t;
-
-using InputAction = std::function<void(uint32_t dt, InputState)>;
-
-struct ButtonAction
+namespace DGame
 {
-  InputKey key;
-  InputAction action;
-};
+  using InputKey = uint8_t;
+  using InputState = uint8_t;
+  using MouseButton = uint8_t;
 
-struct MousePosition
-{
-  int32_t xPos, yPos;
-};
+  using InputAction = std::function<void(uint32_t dt, InputState)>;
 
-using MouseMovedAction = std::function<void(const MousePosition& mousePosition)>;
-using MouseInputAction = std::function<void(InputState state, const MousePosition& position)>;
+  struct ButtonAction
+  {
+    InputKey key;
+    InputAction action;
+  };
 
-struct MouseButtonAction
-{
-  MouseButton mouseButton;
-  MouseInputAction mouseInputAction;
-};
+  struct MousePosition
+  {
+    int32_t xPos, yPos;
+  };
+
+  using MouseMovedAction = std::function<void(const MousePosition &mousePosition)>;
+  using MouseInputAction = std::function<void(InputState state, const MousePosition &position)>;
+
+  struct MouseButtonAction
+  {
+    MouseButton mouseButton;
+    MouseInputAction mouseInputAction;
+  };
+
+}
 
 #endif

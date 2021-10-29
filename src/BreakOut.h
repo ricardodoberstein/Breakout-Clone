@@ -8,6 +8,8 @@
 #include "LevelBoundary.h"
 #include <vector>
 
+using namespace DGame;
+
 enum BreakOutGameState
 {
   IN_PLAY = 0,

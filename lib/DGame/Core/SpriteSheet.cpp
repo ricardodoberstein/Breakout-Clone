@@ -3,108 +3,112 @@
 #include "Path.h"
 #include "FileCommandLoader.h"
 
-SpriteSheet::SpriteSheet()
+namespace DGame
 {
-}
-
-bool SpriteSheet::Load(const std::string &name)
-{
-  bool loadedImage = mBMPImage.Load(Path::GetBasePath() + std::string("assets/") + name + ".bmp");
-  bool loadSpriteSection = LoadSpriteSections(Path::GetBasePath() + std::string("assets/") + name + ".txt");
-
-  return loadedImage && loadSpriteSection;
-}
-
-Sprite SpriteSheet::GetSprite(const std::string &spriteName) const
-{
-  size_t length = mSection.size();
-
-  for (size_t i = 0; i < length; ++i)
+  SpriteSheet::SpriteSheet()
   {
-    if (StringCompare(mSection[i].key, spriteName))
+  }
+
+  bool SpriteSheet::Load(const std::string &name)
+  {
+    bool loadedImage = mBMPImage.Load(Path::GetBasePath() + std::string("assets/") + name + ".bmp");
+    bool loadSpriteSection = LoadSpriteSections(Path::GetBasePath() + std::string("assets/") + name + ".txt");
+
+    return loadedImage && loadSpriteSection;
+  }
+
+  Sprite SpriteSheet::GetSprite(const std::string &spriteName) const
+  {
+    size_t length = mSection.size();
+
+    for (size_t i = 0; i < length; ++i)
     {
-      return mSection[i].sprite;
+      if (StringCompare(mSection[i].key, spriteName))
+      {
+        return mSection[i].sprite;
+      }
     }
+
+    return Sprite();
   }
 
-  return Sprite();
-}
-
-std::vector<std::string> SpriteSheet::SpriteNames() const
-{
-  std::vector<std::string> spriteNames;
-  for (const auto &section : mSection)
+  std::vector<std::string> SpriteSheet::SpriteNames() const
   {
-    spriteNames.push_back(section.key);
+    std::vector<std::string> spriteNames;
+    for (const auto &section : mSection)
+    {
+      spriteNames.push_back(section.key);
+    }
+
+    return spriteNames;
   }
 
-  return spriteNames;
-}
-
-bool SpriteSheet::LoadSpriteSections(const std::string &path)
-{
-  FileCommandLoader fileLoader;
-
-  Command spriteCommand;
-  spriteCommand.command = "sprite";
-
-  spriteCommand.parseFunction = [&](ParseFuncParams params)
+  bool SpriteSheet::LoadSpriteSections(const std::string &path)
   {
-    BMPImageSection section;
-    mSection.push_back(section);
-  };
+    FileCommandLoader fileLoader;
 
-  fileLoader.AddCommand(spriteCommand);
+    Command spriteCommand;
+    spriteCommand.command = "sprite";
 
-  Command keyCommand;
-  keyCommand.command = "key";
+    spriteCommand.parseFunction = [&](ParseFuncParams params)
+    {
+      BMPImageSection section;
+      mSection.push_back(section);
+    };
 
-  keyCommand.parseFunction = [&](ParseFuncParams params)
-  {
-    mSection.back().key = FileCommandLoader::ReadString(params);
-  };
+    fileLoader.AddCommand(spriteCommand);
 
-  fileLoader.AddCommand(keyCommand);
+    Command keyCommand;
+    keyCommand.command = "key";
 
-  Command xPosCommand;
-  xPosCommand.command = "xPos";
+    keyCommand.parseFunction = [&](ParseFuncParams params)
+    {
+      mSection.back().key = FileCommandLoader::ReadString(params);
+    };
 
-  xPosCommand.parseFunction = [&](ParseFuncParams params)
-  {
-    mSection.back().sprite.xPos = FileCommandLoader::ReadInt(params);
-  };
+    fileLoader.AddCommand(keyCommand);
 
-  fileLoader.AddCommand(xPosCommand);
+    Command xPosCommand;
+    xPosCommand.command = "xPos";
 
-  Command yPosCommand;
-  yPosCommand.command = "yPos";
+    xPosCommand.parseFunction = [&](ParseFuncParams params)
+    {
+      mSection.back().sprite.xPos = FileCommandLoader::ReadInt(params);
+    };
 
-  yPosCommand.parseFunction = [&](ParseFuncParams params)
-  {
-    mSection.back().sprite.yPos = FileCommandLoader::ReadInt(params);
-  };
+    fileLoader.AddCommand(xPosCommand);
 
-  fileLoader.AddCommand(yPosCommand);
+    Command yPosCommand;
+    yPosCommand.command = "yPos";
 
-  Command widthCommand;
-  widthCommand.command = "width";
+    yPosCommand.parseFunction = [&](ParseFuncParams params)
+    {
+      mSection.back().sprite.yPos = FileCommandLoader::ReadInt(params);
+    };
 
-  widthCommand.parseFunction = [&](ParseFuncParams params)
-  {
-    mSection.back().sprite.width = FileCommandLoader::ReadInt(params);
-  };
+    fileLoader.AddCommand(yPosCommand);
 
-  fileLoader.AddCommand(widthCommand);
+    Command widthCommand;
+    widthCommand.command = "width";
 
-  Command heightCommand;
-  heightCommand.command = "height";
+    widthCommand.parseFunction = [&](ParseFuncParams params)
+    {
+      mSection.back().sprite.width = FileCommandLoader::ReadInt(params);
+    };
 
-  heightCommand.parseFunction = [&](ParseFuncParams params)
-  {
-    mSection.back().sprite.height = FileCommandLoader::ReadInt(params);
-  };
+    fileLoader.AddCommand(widthCommand);
 
-  fileLoader.AddCommand(heightCommand);
+    Command heightCommand;
+    heightCommand.command = "height";
 
-  return fileLoader.LoadFile(path);
+    heightCommand.parseFunction = [&](ParseFuncParams params)
+    {
+      mSection.back().sprite.height = FileCommandLoader::ReadInt(params);
+    };
+
+    fileLoader.AddCommand(heightCommand);
+
+    return fileLoader.LoadFile(path);
+  }
+
 }

@@ -1,9 +1,13 @@
 #include "Shape.h"
 
-void Shape::MoveBy(const Vec2D &deltaOffset)
+namespace DGame
 {
-  for (Vec2D& point : mPoints)
+
+  void Shape::MoveBy(const Vec2D &deltaOffset)
   {
-    point = point + deltaOffset;
+    for (Vec2D &point : mPoints)
+    {
+      point = point + deltaOffset;
+    }
   }
 }
