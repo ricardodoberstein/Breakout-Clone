@@ -1,24 +1,15 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
-project(Breakout-Clone)
+project(Breakout)
+set(BIN_DIR ${Breakout_SOURCE_DIR}/bin)
+
+file(GLOB_RECURSE Breakout-Clone_SOURCES "src/*.cpp")
 
 add_executable(
   ${PROJECT_NAME}
-  src/main.cpp
-  src/BreakOut.cpp
-  src/BreakOut.h
-  src/Paddle.cpp
-  src/Paddle.h
-  src/Ball.h
-  src/Ball.cpp
-  src/LevelBoundary.h
-  src/LevelBoundary.cpp
-  src/Block.h
-  src/Block.cpp
-  src/BreakoutGameLevel.h
-  src/BreakoutGameLevel.cpp
+  ${Breakout-Clone_SOURCES}
 )
 
 add_subdirectory(lib/DGame src)
@@ -34,3 +25,5 @@ file(COPY src/assets/ArcadeFont.txt DESTINATION assets)
 file(COPY src/assets/ArcadeFont.bmp DESTINATION assets)
 
 target_link_libraries(${PROJECT_NAME} DGame)
+
+install(TARGETS Breakout RUNTIME DESTINATION ${BIN_DIR})

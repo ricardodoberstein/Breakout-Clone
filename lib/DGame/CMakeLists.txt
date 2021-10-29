@@ -1,52 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+
+set(CMAKE_CXX_STANDARD 17)
+
 project(DGame)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${DGame_SOURCE_DIR}/cmake")
+
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR})
+
+file(GLOB_RECURSE DGame_SOURCES "Core/*.cpp")
 
 add_library(
   ${PROJECT_NAME}
-  Core/AARectangle.h
-  Core/AARectangle.cpp
-  Core/BitmapFont.h
-  Core/BitmapFont.cpp
-  Core/BMPImage.cpp
-  Core/BMPImage.h
-  Core/Circle.h
-  Core/Circle.cpp
-  Core/Color.cpp
-  Core/Color.h
-  Core/FileCommandLoader.cpp
-  Core/FileCommandLoader.h
-  Core/GameController.cpp
-  Core/GameController.h
-  Core/GameScene.cpp
-  Core/GameScene.h
-  Core/InputAction.h
-  Core/InputController.cpp
-  Core/InputController.h
-  Core/Line2D.cpp
-  Core/Line2D.h
-  Core/Scene.h
-  Core/Screen.cpp
-  Core/Screen.h
-  Core/ScreenBuffer.cpp
-  Core/ScreenBuffer.h
-  Core/Shape.cpp
-  Core/Shape.h
-  Core/SpriteSheet.cpp
-  Core/SpriteSheet.h
-  Core/Triangle.cpp
-  Core/Triangle.h
-  Core/Utils.cpp
-  Core/Utils.h
-  Core/Vec2D.cpp
-  Core/Vec2D.h
-  Core/Game.h
-  Core/Path.h
-  Core/Path.cpp
-  Core/BoundaryEdge.h
-  Core/Excluder.cpp
-  Core/Excluder.h
-  Core/App.h
-  Core/App.cpp
-  DGame.h
+  ${DGame_SOURCES}
 )
 
-target_link_libraries(${PROJECT_NAME} SDL2)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} )
