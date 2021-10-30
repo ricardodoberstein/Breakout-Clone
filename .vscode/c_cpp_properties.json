@@ -5,6 +5,7 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/lib",
+                "${workspaceFolder}/lib/DGame",
                 "${workspaceFolder}/src"
             ],
             "defines": [],
