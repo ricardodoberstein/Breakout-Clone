@@ -1,11 +1,17 @@
 #ifndef BMPIMAGE_H_
 #define BMPIMAGE_H_
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
+
 #include <vector>
 #include "Color.h"
 #include <stdint.h>
 #include <string>
-#include <SDL2/SDL.h>
 
 namespace DGame
 {

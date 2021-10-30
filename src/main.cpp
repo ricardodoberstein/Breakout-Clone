@@ -3,6 +3,14 @@ const int SCREEN_HEIGHT = 288;
 
 const int MAGNIFICATION = 3;
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
+
+#undef main
 #include "BreakOut.h"
 #include "BreakoutGameLevel.h"
 #include "DGame.h"

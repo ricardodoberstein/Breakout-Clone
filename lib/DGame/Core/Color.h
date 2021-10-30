@@ -1,8 +1,14 @@
 #ifndef COLOR_H_
 #define COLOR_H_
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
+
 #include <stdint.h>
-#include "SDL2/SDL.h"
 
 namespace DGame
 {
