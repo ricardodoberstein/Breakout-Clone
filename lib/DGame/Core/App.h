@@ -3,7 +3,7 @@
 
 #include "App.h"
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "Vec2D.h"
 #include "Color.h"
 #include "Screen.h"

@@ -5,7 +5,7 @@
 #include "Color.h"
 #include <stdint.h>
 #include <string>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 namespace DGame
 {

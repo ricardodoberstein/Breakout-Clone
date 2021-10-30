@@ -2,7 +2,7 @@
 #define COLOR_H_
 
 #include <stdint.h>
-#include "SDL2/SDL.h"
+#include "SDL.h"
 
 namespace DGame
 {

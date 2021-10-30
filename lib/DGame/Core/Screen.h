@@ -5,7 +5,7 @@
 #include "ScreenBuffer.h"
 #include "Color.h"
 #include "Vec2D.h"
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #include <cmath>
 #include "Line2D.h"
 #include "Triangle.h"

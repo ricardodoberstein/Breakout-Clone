@@ -1,5 +1,5 @@
 #include "ScreenBuffer.h"
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <cassert>
 
 namespace DGame

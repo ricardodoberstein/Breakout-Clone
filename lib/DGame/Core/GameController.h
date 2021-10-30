@@ -3,7 +3,7 @@
 
 #include "InputAction.h"
 #include <vector>
-#include "SDL2/SDL.h"
+#include "SDL.h"
 
 namespace DGame
 {

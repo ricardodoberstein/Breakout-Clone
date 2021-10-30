@@ -2,7 +2,7 @@
 #define PATH_H_
 
 #include <string>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 namespace DGame
 {

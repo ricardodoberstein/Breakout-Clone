@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(DGame)
 
+set(SDL2_INCLUDE_DIR "C:/SDL2/Development Libraries/SDL2-2.0.16/include")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${DGame_SOURCE_DIR}/cmake")
 
 find_package(SDL2 REQUIRED)
