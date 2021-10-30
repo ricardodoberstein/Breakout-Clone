@@ -1,9 +1,14 @@
 #ifndef APP_H_
 #define APP_H_
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
 #include "App.h"
 #include <iostream>
-#include <SDL.h>
 #include "Vec2D.h"
 #include "Color.h"
 #include "Screen.h"
